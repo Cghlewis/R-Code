@@ -1,3 +1,5 @@
+#Presentation cont
+
 #Let's view our data
 head(data8,10)
 colnames(data8)
