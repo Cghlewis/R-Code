@@ -18,14 +18,18 @@ data4$EndDate2<-convertToDate(data4$EndDate)
 data8$StartDate3<-as.Date(data8$StartDate)
 data8$EndDate3<-as.Date(data8$EndDate)
 
-#Now let's drop the old dates
-newdata <- data8[c(-1:-2,-18:-19)]
+str(data8)
+
+#Drop the old dates if you had to change date type
+newdata <- data8[c(-1:-2)]
 head(newdata)
 
 #Let's drop unnecessary vars
 newdata$V10<-NULL
 newdata$Q1<-NULL
 newdata$Q3<-NULL
+
+str(data8)
 
 #Let's rename the variables
 install.packages("plyr")
@@ -45,9 +49,11 @@ table(newdata$Female, newdata$Gender)
 newdata$Female2<-ifelse(newdata$Gender == 1, 0, ifelse(newdata$Gender == 2, 1, 3))
 table(newdata$Female2, newdata$Gender)
 
-##OR
+##OR (this makes gender a string with labels)
 newdata$Female3[newdata$Female2==0] <- "Male"
 newdata$Female3[newdata$Female2==1] <- "Female"
+
+str(newdata$Female3)
 
 #Reverse code 18_1
 
@@ -76,30 +82,56 @@ describe(newdata$Stresssum)
 
 describeBy(newdata$Stresssum, group=newdata$Female3)
 
-#Graphs
+table(newdata$Grade)
+
+table(Female3,Grade)
+
+str(newdata)
+
+#Graphs built in
 hist(newdata$Stresssum)
 
 plot(newdata$Q18_1new,newdata$Q18_2)
 
+xyplot(newdata$Q18_1new~newdata$Q18_2)
+
+xyplot(newdata$Q18_1new~newdata$Q18_2|newdata$Female3)
+
+##You can set the working dataset so you don't have to write "newdata" all the time, but
+#this is only an attachment, you cannot alter this dataframe
+
+# Set the working dataset
+attach(newdata)
+
+xyplot(Q18_1new~Q18_2|Female3)
+
+
+#Packages for graphs
+
+install.packages("lattice")
 library(lattice)
 
 histogram(newdata$Stresssum)
 histogram(~newdata$Stresssum|newdata$Female3)
 
 
+install.packages("ggplot2")
+library(ggplot2)
 
-##These need to be updated to be part of the presentation
+qplot(x=Q18_1new, y=Q18_2,data=newdata, geom="point")
 
-xyplot(x~y)
 
-xyplot(x~y|z)
+##For this plot you have to designate Grade as a factor or the legend will show grade as
+#a continous variable
+ggplot(newdata,aes(x=Q18_1new,y=Q18_2, color=Female3, shape=Female3, size=factor(Grade))) +geom_point() +labs(color="Female3", x="Stress1", y="Stress2")
 
-ggplot(cardb,aes(x=mileage,y=price, color=make, shape=make, size=liter))+geom_point() +
-  labs(color="Make", x="MIles per gallon", y="Selling price")  #could say shape=make
+##Different shapes are different numbers
+ggplot(newdata,aes(x=Q18_1new,y=Q18_2, color=Female3, size=factor(Grade)))+geom_point(shape=18) +labs(color="Female3", x="Stress1", y="Stress2")
 
-ggplot(cardb, aes(x=price)) + geom_histogram
+##Decide your number of bins
 
-ggplot(cardb, aes(x=price, fill=make)) + geom_histogram(bins=80) #fill changes colors based on make
+ggplot(newdata, aes(x=Stresssum, fill=Female3)) +geom_histogram(bins = 10)
+
 
 
 
