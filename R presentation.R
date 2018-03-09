@@ -12,6 +12,11 @@
 ##Using sweep to clear environment
 #Clear console
 
+#Just to read the dataset, does not make a dataframe
+
+readLines("C:/Users/hamptoncg/Desktop/R/CSV.csv", 
+          n=10)
+
 
 #####################################Getting your data into R#############################################
 
@@ -81,10 +86,7 @@ data12<-read.spss("SPSS.sav", to.data.frame=T, use.value.labels=FALSE)
 str(data6)
 str(data12)
 
-##OR
 
-readLines("C:/Users/hamptoncg/Desktop/R/Teacher_Self_Report.csv", 
-          n=10)
 
 ##Bad thing about foreign is that it brings strings in as factors which you may not want
 
