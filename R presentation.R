@@ -9,11 +9,6 @@
 
 ###Extras
 
-library(foreign)
-
-readLines("C:/Users/hamptoncg/Desktop/R/Teacher_Self_Report.csv", 
-          n=10)
-
 ##Using sweep to clear environment
 #Clear console
 
@@ -80,10 +75,16 @@ data4$EndDate2<-convertToDate(data4$EndDate)
 
 install.packages("foreign")
 
+library(foreign)
 
 data12<-read.spss("SPSS.sav", to.data.frame=T, use.value.labels=FALSE)
 str(data6)
 str(data12)
+
+##OR
+
+readLines("C:/Users/hamptoncg/Desktop/R/Teacher_Self_Report.csv", 
+          n=10)
 
 ##Bad thing about foreign is that it brings strings in as factors which you may not want
 
