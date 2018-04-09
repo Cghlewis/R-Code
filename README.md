@@ -1,2 +1,0 @@
-# R-Code
-Teaching R
