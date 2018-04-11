@@ -114,6 +114,7 @@ str(data9)
 
 ##Reading a file directly from github
 
+x <- read.csv ("https://raw.githubusercontent.com/Cghlewis/Sample-files/master/CSV.csv")
 
 
 
