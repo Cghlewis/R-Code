@@ -112,6 +112,8 @@ data9<-import("SPSS.sav")
 str(data9$TeacherID)
 str(data9)
 
+##Reading a file directly from github
+
 
 
 
