@@ -91,6 +91,9 @@ table(Female3,Grade)
 
 str(newdata)
 
+##Write data back out
+#write.xlsx
+
 
 
 
