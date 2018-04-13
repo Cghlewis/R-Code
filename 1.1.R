@@ -45,49 +45,59 @@ data2<-read.table("Tab Delimited DAT.dat", sep="\t", header=FALSE)
 
 data3<-read.table("CSV.csv", sep=",",header=TRUE)
 
-       #Could also use read.csv
+#Could also use read.csv
 
 data4<-read.csv("CSV.csv")
 
-##For files that have any formatting you can't use read.table. You'll need some sort of package.
+       ##For files that have any formatting you can't use read.table. You'll need some sort of package.
+
+       ##Packages most be loaded one time in R and then called from the library every time you open R
 
 
-#xlsx
+##Package 1: Open XLSX
 
-  #Install packages to help load data
+       #xlsx
 
 install.packages("openxlsx")
 library(openxlsx)
 
-  #Typing read.xlsx into console to get all options
+       #Typing read.xlsx into console to get all options
 
 data5<-read.xlsx("XLSX two row.xlsx", sheet=1, startRow =2, colNames=TRUE)
 str(data5)
 
-  #Dates come in as strings this way
-  #Can convert back to date using this
+      #Dates come in as strings this way
+      #Can convert back to date using this
 
 data5$StartDate2<-convertToDate(data5$StartDate)
 data5$EndDate2<-convertToDate(data5$EndDate)
 
 
-#spss, sas, stata, you can use the "foreign" package
-##Bad thing about foreign is that it brings strings in as factors which you may not want
+##Package 2: Foreign 
+
+      #spss, sas, stata, you can use the "foreign" package
+      ##Bad thing about foreign is that it brings strings in as factors which you may not want
 
 install.packages("foreign")
-
 library(foreign)
 
-data6<-read.spss("SPSS.sav", to.data.frame=T, use.value.labels=FALSE)
+       #Typing read.spss into console to get all options
 
+data6<-read.spss("SPSS.sav", to.data.frame=T, use.value.labels=FALSE)
 str(data6)
 
-#Haven is how R loads in data if you use the file--import dataset drop down menu
+##Package 3: Haven
+
+#Haven is how R loads in data if you use the file--import dataset drop down menu****
+ #spss, sas, stata, you can use the "foreign" package
+
+install.packages("haven")
 library(haven)
+
+       #Typing read.spss into console to get all options***
+
 SPSS <- read_sav("C:/Users/hamptoncg/Desktop/R/SPSS.sav")
-
 View(SPSS)
-
 str(SPSS)
 
 ##There is one package that will allow you to load in all data types the same way, Rio
