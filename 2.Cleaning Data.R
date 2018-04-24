@@ -105,7 +105,11 @@ mean(newdata$Stresssum, na.rm=TRUE)
 sd(newdata$Stresssum)
 range(newdata$Stresssum)
 
+table(newdata$Grade)
+table(newdata$Female3,newdata$Grade)
+
       #This package allows you to see several descriptives at once, don't have to put na.rm=TRUE either
+      #You can also get alpha, omega, correlations, etc. from this package
 
 install.packages("psych")
 library(psych)
@@ -114,9 +118,7 @@ describe(newdata$Stresssum)
 
 describeBy(newdata$Stresssum, group=newdata$Female3)
 
-table(newdata$Grade)
 
-table(Female3,Grade)
 
 
 
