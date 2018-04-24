@@ -1,4 +1,4 @@
-##Making graphs in R
+##Making graphs in R (work in progress)
 
 #Graphs built in to R
 hist(newdata$Stresssum)
