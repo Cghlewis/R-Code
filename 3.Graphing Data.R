@@ -77,3 +77,25 @@ ggplot(newdata, aes(x=Stresssum, fill=Female3)) +geom_histogram
       ##Decide your number of bins
 
 ggplot(newdata, aes(x=Stresssum, fill=Female3)) +geom_histogram(bins = 10)
+
+
+      #Examples
+
+frame <- read.csv( "DataSet-Autos.csv" )
+library( ggplot2 )
+qplot( mpg, wt, data=frame, size=mpg, color=I( "Green" ) )
+
+
+frame <- read.csv( "DataSet-Experiment.csv" )
+print( head( frame, n=3 ) )
+library( ggplot2 )
+qplot( Group, Weight, data=frame, 
+       geom=c( "boxplot", "jitter" ), 
+       fill=Group,
+       main="Experiment Results" 
+)
+qplot( Group, Weight, data=frame, 
+       geom="violin", trim=FALSE, 
+       fill=Group,
+       main="Experiment Results" 
+)
